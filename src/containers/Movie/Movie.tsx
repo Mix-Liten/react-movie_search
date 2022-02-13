@@ -7,7 +7,8 @@ import { fetchMovieList, MovieDetail } from './API'
 const Container = styled.div`
   text-align: center;
   width: max(1000px, 80%);
-  margin: auto;
+  min-height: calc(100vh - 35px - 40px);
+  margin: 20px auto;
   @media (max-width: 1000px) {
     width: max(600px, 80%);
   }
@@ -42,7 +43,7 @@ const Movie = () => {
     const movieName = target.movieName.value
     const movies = await fetchMovieList(movieName)
     target.movieName.value = ''
-    if (movies.length) setMovieList(movies)
+    if (movies?.length) setMovieList(movies)
   }
 
   return (

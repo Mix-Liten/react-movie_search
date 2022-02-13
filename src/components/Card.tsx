@@ -4,9 +4,9 @@ import styled from 'styled-components'
 const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 500px;
+  padding: 4px;
   border-radius: 4px;
   transition: box-shadow 0.4s;
   box-shadow: inset 0 22px 56px -36px rgba(255, 255, 255, 0.5), inset 0 4px 5px -4px rgba(255, 255, 255, 1),
@@ -33,6 +33,7 @@ const StyledCard = styled.div`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    box-sizing: border-box;
   }
 `
 
@@ -45,7 +46,7 @@ interface CardProps {
 const Card: FC<CardProps> = ({ imgSrc, title, alt }) => {
   return (
     <StyledCard>
-      <img src={imgSrc} alt={alt} />
+      <img src={imgSrc} alt={alt} title={title} />
       <p title={title}>{title}</p>
     </StyledCard>
   )
