@@ -1,8 +1,8 @@
-import { useState, FormEvent } from 'react'
+import { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import Header from '../../components/Header'
 import CardList from './CardList'
-import { fetchMovieList, MovieDetail } from './API'
+import SearchForm from './SearchForm'
+import { MovieDetail } from './API'
 
 const Container = styled.div`
   text-align: center;
@@ -17,46 +17,17 @@ const Container = styled.div`
   }
 `
 
-const Form = styled.form`
-  width: 300px;
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  margin-bottom: 16px;
-`
-
-const FormLabel = styled.label`
-  input {
-    margin-right: 8px;
-    margin-left: 8px;
-  }
-`
-
 const Movie = () => {
   const [movieList, setMovieList] = useState<MovieDetail[]>([])
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const target = e.target as typeof e.target & {
-      movieName: { value: string }
-    }
-    const movieName = target.movieName.value
-    const movies = await fetchMovieList(movieName)
-    target.movieName.value = ''
-    if (movies?.length) setMovieList(movies)
-  }
+  const updateMovieList = useCallback((data: MovieDetail[]) => {
+    setMovieList(data)
+  }, [])
 
   return (
     <Container>
-      <Header title="React Movie Search" />
-      <Form onSubmit={onSubmit}>
-        <FormLabel>
-          Name:
-          <input type="text" name="movieName" autoComplete="off" placeholder="Star Wars..." />
-        </FormLabel>
-        <button type="submit">Submit</button>
-      </Form>
-      {movieList && <CardList movieList={movieList} />}
+      <SearchForm updateMovieList={updateMovieList} />
+      {!!movieList.length && <CardList movieList={movieList} />}
     </Container>
   )
 }
