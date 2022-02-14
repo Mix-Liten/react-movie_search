@@ -42,10 +42,16 @@ const ActiveItem = styled(Item)`
 const replaceMarked = (text: string, paragraph: string) => {
   const markedText = <strong>{text}</strong>
   return (
-    <span>
-      {markedText}
-      {paragraph.slice(text.length)}
-    </span>
+    <>
+      {text.toUpperCase() === paragraph.substring(0, text.length).toUpperCase() ? (
+        <span>
+          {markedText}
+          {paragraph.slice(text.length)}
+        </span>
+      ) : (
+        <span>{paragraph}</span>
+      )}
+    </>
   )
 }
 
@@ -66,7 +72,6 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
     const target = e.target as HTMLElement
     if (target.dataset?.keep) return
     setIsShow(false)
-    setSuggestions([])
   })
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -90,13 +95,14 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
     } else if (['ArrowLeft', 'ArrowRight', 'Enter'].includes(e.key)) {
       e.preventDefault()
       setIsShow(false)
-      setActiveIndex(-1)
+      setSuggestions([])
       if (activeIndex === -1) {
         await onSearch(searchText)
         return
       } else {
         await onSearch(suggestions[activeIndex])
       }
+      setActiveIndex(-1)
       setSearchText('')
     }
   }
