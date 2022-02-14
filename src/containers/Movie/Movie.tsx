@@ -7,8 +7,9 @@ import { MovieDetail } from './API'
 const Container = styled.div`
   text-align: center;
   width: max(1000px, 80%);
-  min-height: calc(100vh - 35px - 40px);
+  min-height: calc(100vh - 35px - 40px - 38px);
   margin: 20px auto;
+  box-sizing: border-box;
   @media (max-width: 1000px) {
     width: max(600px, 80%);
   }
