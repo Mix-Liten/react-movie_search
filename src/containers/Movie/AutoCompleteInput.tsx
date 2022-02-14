@@ -39,17 +39,21 @@ const ActiveItem = styled(Item)`
   color: #ffffff;
 `
 
+const StyledText = styled.span`
+  pointer-events: none;
+`
+
 const replaceMarked = (text: string, paragraph: string) => {
   const markedText = <strong>{text}</strong>
   return (
     <>
       {text.toUpperCase() === paragraph.substring(0, text.length).toUpperCase() ? (
-        <span>
+        <StyledText>
           {markedText}
           {paragraph.slice(text.length)}
-        </span>
+        </StyledText>
       ) : (
-        <span>{paragraph}</span>
+        <StyledText>{paragraph}</StyledText>
       )}
     </>
   )
@@ -112,7 +116,6 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
       value: string
     }
     setSearchText(target.value)
-    setIsShow(true)
   }
 
   useDebounce(
@@ -135,10 +138,9 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
     setActiveIndex(i)
   }
 
-  const onClick = async (suggestion: string) => {
-    setIsShow(false)
-    await onSearch(suggestion)
-    setSearchText('')
+  const onClick = (suggestion: string) => {
+    setSearchText(suggestion)
+    setSuggestions([])
   }
 
   return (
