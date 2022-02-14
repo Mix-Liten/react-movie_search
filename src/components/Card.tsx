@@ -6,7 +6,6 @@ const StyledCard = styled.div`
   flex-direction: column;
   align-items: center;
   height: 500px;
-  padding: 4px;
   border-radius: 4px;
   transition: box-shadow 0.4s;
   box-shadow: inset 0 22px 56px -36px rgba(255, 255, 255, 0.5), inset 0 4px 5px -4px rgba(255, 255, 255, 1),
@@ -25,6 +24,7 @@ const StyledCard = styled.div`
   }
 
   p {
+    flex: 1;
     margin: 0px;
     text-align: center;
     width: 300px;

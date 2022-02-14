@@ -6,7 +6,7 @@ import { MovieDetail } from './API'
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, auto);
-  gap: 8px;
+  gap: 16px;
   @media (max-width: 1000px) {
     grid-template-columns: repeat(2, auto);
   }
