@@ -46,7 +46,11 @@ interface CardProps {
 const Card: FC<CardProps> = ({ imgSrc, title, alt }) => {
   return (
     <StyledCard>
-      <img src={imgSrc} alt={alt} title={title} />
+      {!imgSrc || imgSrc === 'N/A' ? (
+        <img src={`https://dummyimage.com/300x450/706c70/f5f5fa&text=${title}`} alt={alt} title={title} />
+      ) : (
+        <img src={imgSrc} alt={alt} title={title} />
+      )}
       <p title={title}>{title}</p>
     </StyledCard>
   )
