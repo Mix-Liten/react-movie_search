@@ -1,4 +1,4 @@
-import { FC, FormEvent, memo, useState, useRef } from 'react'
+import { FC, FormEvent, memo, useState, MutableRefObject } from 'react'
 import styled from 'styled-components'
 import { fetchMovieList, MovieDetail } from './API'
 import AutoCompleteInput from './AutoCompleteInput'
@@ -30,11 +30,11 @@ const Loading = styled.div`
 `
 
 interface SearchFormProps {
-  updateMovieList(data: MovieDetail[]): void
+  updateMovieList(data: MovieDetail[], totalNum: number): void
+  lastSearchText: MutableRefObject<string>
 }
 
-const SearchForm: FC<SearchFormProps> = ({ updateMovieList }) => {
-  const lastSearchText = useRef('')
+const SearchForm: FC<SearchFormProps> = ({ updateMovieList, lastSearchText }) => {
   const [isLoading, setIsLoading] = useState(false)
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -47,10 +47,14 @@ const SearchForm: FC<SearchFormProps> = ({ updateMovieList }) => {
   }
   const onSearch = async (searchText: string) => {
     if (lastSearchText.current === searchText) return
+    if (searchText.length < 4) {
+      alert('Please type over than 3 characters!')
+      return
+    }
     setIsLoading(true)
     lastSearchText.current = searchText
-    const movies = await fetchMovieList(searchText)
-    if (movies?.length) updateMovieList(movies)
+    const [movies, totalNum] = await fetchMovieList(searchText)
+    if (movies?.length) updateMovieList(movies, parseInt(totalNum))
     await new Promise<void>(resolve => setTimeout(() => resolve(), 1000))
     setIsLoading(false)
   }

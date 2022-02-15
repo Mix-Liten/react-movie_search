@@ -76,6 +76,7 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
     const target = e.target as HTMLElement
     if (target.dataset?.keep) return
     setIsShow(false)
+    setActiveIndex(-1)
   })
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -119,8 +120,8 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
 
   useDebounce(
     async () => {
-      if (!searchText || searchText.length > 10) return
-      const movies = await fetchMovieList(searchText.trim())
+      if (!searchText || searchText.length > 10 || searchText.length < 4) return
+      const [movies] = await fetchMovieList(searchText.trim())
       if (!movies?.length) return
       const movieNameList = movies
         .map(movie => movie?.Title)

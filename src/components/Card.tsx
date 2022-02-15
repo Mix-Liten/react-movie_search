@@ -42,6 +42,8 @@ const StyledCard = styled.div`
     overflow: hidden;
     box-sizing: border-box;
     color: #000;
+    line-height: 21px;
+    height: 42px;
   }
 `
 
