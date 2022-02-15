@@ -47,8 +47,8 @@ const SearchForm: FC<SearchFormProps> = ({ updateMovieList, lastSearchText }) =>
   }
   const onSearch = async (searchText: string) => {
     if (lastSearchText.current === searchText) return
-    if (searchText.length < 4) {
-      alert('Please type over than 3 characters!')
+    if (searchText.length < 3) {
+      alert('Please type at least 3 characters!')
       return
     }
     setIsLoading(true)
