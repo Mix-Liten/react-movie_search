@@ -107,7 +107,6 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
         await onSearch(suggestions[activeIndex])
       }
       setActiveIndex(-1)
-      setSearchText('')
     }
   }
 
@@ -148,6 +147,7 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
       <input
         type="text"
         autoComplete="off"
+        autoFocus
         name={name}
         placeholder={placeholderText}
         value={searchText}
