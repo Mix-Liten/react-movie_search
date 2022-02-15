@@ -33,7 +33,13 @@ const CardList: FC<CardListProps> = ({ movieList }) => {
     <Grid>
       {movieList.map((movie, i) => (
         <Item key={i}>
-          <Card imgSrc={movie.Poster} title={movie.Title} alt={movie.Title} />
+          <Card
+            imgSrc={movie.Poster}
+            title={movie.Title}
+            alt={movie.Title}
+            baseURL={'https://www.imdb.com/title/'}
+            id={movie.imdbID}
+          />
         </Item>
       ))}
     </Grid>

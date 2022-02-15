@@ -1,6 +1,13 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 
+const StyledLinkWrapper = styled.a`
+  text-decoration: none;
+  &:hover p {
+    color: #444;
+  }
+`
+
 const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,25 +41,44 @@ const StyledCard = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
     box-sizing: border-box;
+    color: #000;
   }
 `
 
-interface CardProps {
+interface CardWrapperProps {
+  baseURL?: string
+  id?: string
+}
+
+const CardWrapper: FC<CardWrapperProps> = ({ baseURL, id, children }) => {
+  if (baseURL && id) {
+    return (
+      <StyledLinkWrapper href={`${baseURL}${id}`} target="_blank" rel="noopener noreferrer">
+        {children}
+      </StyledLinkWrapper>
+    )
+  }
+  return <>{children}</>
+}
+
+interface CardProps extends CardWrapperProps {
   imgSrc: string
   title: string
   alt: string
 }
 
-const Card: FC<CardProps> = ({ imgSrc, title, alt }) => {
+const Card: FC<CardProps> = ({ imgSrc, title, alt, ...props }) => {
   return (
-    <StyledCard>
-      {!imgSrc || imgSrc === 'N/A' ? (
-        <img src={`https://dummyimage.com/300x450/706c70/f5f5fa&text=${title}`} alt={alt} title={title} />
-      ) : (
-        <img src={imgSrc} alt={alt} title={title} />
-      )}
-      <p title={title}>{title}</p>
-    </StyledCard>
+    <CardWrapper {...props}>
+      <StyledCard>
+        {!imgSrc || imgSrc === 'N/A' ? (
+          <img src={`https://dummyimage.com/300x450/706c70/f5f5fa&text=${title}`} alt={alt} title={title} />
+        ) : (
+          <img src={imgSrc} alt={alt} title={title} />
+        )}
+        <p title={title}>{title}</p>
+      </StyledCard>
+    </CardWrapper>
   )
 }
 
