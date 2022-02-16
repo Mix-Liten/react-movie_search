@@ -4,6 +4,7 @@ import Card from '../../components/Card'
 import { MovieDetail } from './API'
 
 const Grid = styled.div`
+  margin-top: 16px;
   display: grid;
   grid-template-columns: repeat(3, auto);
   gap: 16px;

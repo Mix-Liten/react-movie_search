@@ -5,14 +5,16 @@ import AutoCompleteInput from './AutoCompleteInput'
 import LoadingGif from '../../assets/loading.gif'
 
 const Form = styled.form`
-  width: 300px;
+  width: 325px;
   display: flex;
   justify-content: space-between;
   margin: auto;
-  margin-bottom: 16px;
+  position: relative;
 `
 
 const FormLabel = styled.label`
+  display: inline-flex;
+  margin-right: 16px;
   input {
     margin-right: 8px;
     margin-left: 8px;
@@ -22,8 +24,9 @@ const FormLabel = styled.label`
 const Loading = styled.div`
   width: 22px;
   height: 22px;
+  position: absolute;
   top: 0;
-  right: 0;
+  right: 20%;
   img {
     width: 100%;
   }
@@ -35,7 +38,7 @@ interface SearchFormProps {
 }
 
 const SearchForm: FC<SearchFormProps> = ({ updateMovieList, lastSearchText }) => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const target = e.target as typeof e.target & {
