@@ -97,7 +97,7 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
       let newActiveIndex = activeIndex + 1
       if (newActiveIndex >= suggestions.length) newActiveIndex = 0
       setActiveIndex(newActiveIndex)
-    } else if (['ArrowLeft', 'ArrowRight', 'Enter'].includes(e.key)) {
+    } else if (e.key === 'Enter') {
       e.preventDefault()
       setIsShow(false)
       setSuggestions([])
