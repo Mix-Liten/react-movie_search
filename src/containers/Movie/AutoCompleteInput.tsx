@@ -130,7 +130,7 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
       setSuggestions(movieNameList)
       setIsShow(true)
     },
-    1000,
+    400,
     [searchText]
   )
 
