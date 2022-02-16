@@ -161,11 +161,20 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
         <List>
           {suggestions.map((suggestion, i) =>
             activeIndex === i ? (
-              <ActiveItem data-keep key={`${suggestion}-${i}`} onClick={() => onClick(suggestion)}>
+              <ActiveItem
+                data-keep
+                key={`${suggestion}-${i}`}
+                onClick={() => onClick(suggestion)}
+                onTouchStart={() => onClick(suggestion)}
+              >
                 {replaceMarked(searchText, suggestion)}
               </ActiveItem>
             ) : (
-              <Item key={`${suggestion}-${i}`} onMouseOver={() => onMouseOver(i)}>
+              <Item
+                key={`${suggestion}-${i}`}
+                onMouseOver={() => onMouseOver(i)}
+                onTouchStart={() => onClick(suggestion)}
+              >
                 {replaceMarked(searchText, suggestion)}
               </Item>
             )

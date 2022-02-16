@@ -10,6 +10,10 @@ const Form = styled.form`
   justify-content: space-between;
   margin: auto;
   position: relative;
+  button {
+    width: 55px;
+    text-align: center;
+  }
 `
 
 const FormLabel = styled.label`
@@ -18,6 +22,9 @@ const FormLabel = styled.label`
   input {
     margin-right: 8px;
     margin-left: 8px;
+  }
+  @media (max-width: 600px) {
+    margin-right: 24px;
   }
 `
 
@@ -29,6 +36,12 @@ const Loading = styled.div`
   right: 20%;
   img {
     width: 100%;
+  }
+  @media (max-width: 600px) {
+    right: 15%;
+  }
+  @media (max-width: 401px) {
+    right: 20%;
   }
 `
 
