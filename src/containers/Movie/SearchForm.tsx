@@ -38,7 +38,7 @@ interface SearchFormProps {
 }
 
 const SearchForm: FC<SearchFormProps> = ({ updateMovieList, lastSearchText }) => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const target = e.target as typeof e.target & {
