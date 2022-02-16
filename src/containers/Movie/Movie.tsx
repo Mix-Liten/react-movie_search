@@ -44,7 +44,9 @@ const Movie = () => {
 
   useEffect(() => {
     if (!movieList.length) return
-    setnextPageIndex(Math.ceil(movieList.length / 10 + 1))
+    if (movieList.length / 10 >= 1) {
+      setnextPageIndex(Math.ceil(movieList.length / 10 + 1))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieList])
 
@@ -54,6 +56,11 @@ const Movie = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nextPageIndex])
+
+  useEffect(() => {
+    setnextPageIndex(0)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastSearchText.current])
 
   const updateMovieList = useCallback((data: MovieDetail[], totalNum: number) => {
     if (!totalResultNum) setTotalResultNum(totalNum || 0)
