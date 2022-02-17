@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import CardList from './CardList'
 import SearchForm from './SearchForm'
+import Button from '../../components/Button'
 import { fetchMovieList, MovieDetail } from './API'
 
 const Container = styled.div`
@@ -15,24 +16,6 @@ const Container = styled.div`
   }
   @media (max-width: 600px) {
     width: 80%;
-  }
-`
-
-const MoreBtn = styled.button`
-  width: 200px;
-  height: 50px;
-  cursor: pointer;
-  background-color: #ffffff;
-  border: 2px solid #000000;
-  border-bottom: 5px solid #000000;
-  font-family: 'Futura';
-  font-size: 1.2em;
-  color: #000000;
-  letter-spacing: 1px;
-  margin-top: 15px;
-  transition: 1s;
-  &:hover {
-    background-color: #c1f6de;
   }
 `
 
@@ -77,11 +60,7 @@ const Movie = () => {
     <Container>
       <SearchForm updateMovieList={updateMovieList} lastSearchText={lastSearchText} />
       {!!movieList.length && <CardList movieList={movieList} />}
-      {!!nextPageIndex && (
-        <MoreBtn type="button" onClick={onClick}>
-          More
-        </MoreBtn>
-      )}
+      {!!nextPageIndex && <Button title={'More'} onClick={onClick} />}
     </Container>
   )
 }
