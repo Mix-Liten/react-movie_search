@@ -32,7 +32,7 @@ interface CardListProps {
 
 const CardList: FC<CardListProps> = ({ movieList }) => {
   return (
-    <Grid>
+    <Grid data-testid="card-list">
       {movieList.map((movie, i) => (
         <Item key={i}>
           <Card
