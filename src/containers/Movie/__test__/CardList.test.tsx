@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, cleanup } from '@testing-library/react'
-import CardList from './CardList'
-import { MovieDetail } from './API'
+import CardList from '../CardList'
+import { MovieDetail } from '../API'
 
 beforeEach(cleanup)
 

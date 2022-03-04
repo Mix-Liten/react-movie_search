@@ -1,59 +1,19 @@
 import { FC, KeyboardEvent, ChangeEvent, useState, memo, useRef } from 'react'
-import styled from 'styled-components'
 import { fetchMovieList } from './API'
 import { useClickAway, useDebounce } from '../../hooks'
-
-const Wrapper = styled.div`
-  position: relative;
-  display: inline-block;
-`
-
-const List = styled.div`
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  top: 100%;
-  left: 0;
-  right: 0;
-  width: 147px;
-  margin-left: 8px;
-  margin-right: 8px;
-`
-
-const Item = styled.div`
-  text-align: left;
-  font-size: 12px;
-  padding: 4px;
-  cursor: pointer;
-  background-color: #fff;
-  border-bottom: 1px solid #d4d4d4;
-  &:hover {
-    background-color: #e9e9e9;
-  }
-`
-
-const ActiveItem = styled(Item)`
-  background-color: DodgerBlue !important;
-  color: #ffffff;
-`
-
-const StyledText = styled.span`
-  pointer-events: none;
-`
+import { ACS } from './style'
 
 const replaceMarked = (text: string, paragraph: string) => {
   const markedText = <strong>{text}</strong>
   return (
     <>
       {text.toUpperCase() === paragraph.substring(0, text.length).toUpperCase() ? (
-        <StyledText>
+        <ACS.Text>
           {markedText}
           {paragraph.slice(text.length)}
-        </StyledText>
+        </ACS.Text>
       ) : (
-        <StyledText>{paragraph}</StyledText>
+        <ACS.Text>{paragraph}</ACS.Text>
       )}
     </>
   )
@@ -144,7 +104,7 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
   }
 
   return (
-    <Wrapper>
+    <ACS.Wrapper>
       <input
         type="text"
         autoComplete="off"
@@ -158,30 +118,30 @@ const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }
         ref={inputRef}
       />
       {isShow && (
-        <List>
+        <ACS.List>
           {suggestions.map((suggestion, i) =>
             activeIndex === i ? (
-              <ActiveItem
+              <ACS.ActiveItem
                 data-keep
                 key={`${suggestion}-${i}`}
                 onClick={() => onClick(suggestion)}
                 onTouchStart={() => onClick(suggestion)}
               >
                 {replaceMarked(searchText, suggestion)}
-              </ActiveItem>
+              </ACS.ActiveItem>
             ) : (
-              <Item
+              <ACS.Item
                 key={`${suggestion}-${i}`}
                 onMouseOver={() => onMouseOver(i)}
                 onTouchStart={() => onClick(suggestion)}
               >
                 {replaceMarked(searchText, suggestion)}
-              </Item>
+              </ACS.Item>
             )
           )}
-        </List>
+        </ACS.List>
       )}
-    </Wrapper>
+    </ACS.Wrapper>
   )
 }
 

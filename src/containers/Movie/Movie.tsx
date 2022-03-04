@@ -1,23 +1,9 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
-import styled from 'styled-components'
 import CardList from './CardList'
 import SearchForm from './SearchForm'
 import Button from '../../components/Button'
 import { fetchMovieList, MovieDetail } from './API'
-
-const Container = styled.div`
-  text-align: center;
-  width: max(1000px, 80%);
-  min-height: calc(100vh - 35px - 40px - 42px);
-  margin: 20px auto;
-  box-sizing: border-box;
-  @media (max-width: 1000px) {
-    width: max(600px, 80%);
-  }
-  @media (max-width: 600px) {
-    width: 80%;
-  }
-`
+import { S } from './style'
 
 const Movie = () => {
   const [movieList, setMovieList] = useState<MovieDetail[]>([])
@@ -57,11 +43,11 @@ const Movie = () => {
   }
 
   return (
-    <Container>
+    <S.Container>
       <SearchForm updateMovieList={updateMovieList} lastSearchText={lastSearchText} />
       {!!movieList.length && <CardList movieList={movieList} />}
       {!!nextPageIndex && <Button title={'More'} onClick={onClick} />}
-    </Container>
+    </S.Container>
   )
 }
 

@@ -1,49 +1,8 @@
 import { FC, FormEvent, memo, useState, MutableRefObject } from 'react'
-import styled from 'styled-components'
 import { fetchMovieList, MovieDetail } from './API'
 import AutoCompleteInput from './AutoCompleteInput'
 import LoadingGif from '../../assets/loading.gif'
-
-const Form = styled.form`
-  width: 325px;
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  position: relative;
-  button {
-    width: 55px;
-    text-align: center;
-  }
-`
-
-const FormLabel = styled.label`
-  display: inline-flex;
-  margin-right: 16px;
-  input {
-    margin-right: 8px;
-    margin-left: 8px;
-  }
-  @media (max-width: 600px) {
-    margin-right: 24px;
-  }
-`
-
-const Loading = styled.div`
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  top: 0;
-  right: 20%;
-  img {
-    width: 100%;
-  }
-  @media (max-width: 600px) {
-    right: 15%;
-  }
-  @media (max-width: 401px) {
-    right: 20%;
-  }
-`
+import { S } from './style'
 
 interface SearchFormProps {
   updateMovieList(data: MovieDetail[], totalNum: number): void
@@ -75,14 +34,14 @@ const SearchForm: FC<SearchFormProps> = ({ updateMovieList, lastSearchText }) =>
     setIsLoading(false)
   }
   return (
-    <Form onSubmit={onSubmit}>
-      <FormLabel>
+    <S.Form onSubmit={onSubmit}>
+      <S.FormLabel>
         Name:
         <AutoCompleteInput name="movieName" placeholderText="Star Wars..." onSearch={onSearch} />
-      </FormLabel>
-      <Loading>{isLoading && <img src={LoadingGif} alt="loading..." />}</Loading>
+      </S.FormLabel>
+      <S.Loading>{isLoading && <img src={LoadingGif} alt="loading..." />}</S.Loading>
       <button type="submit">Submit</button>
-    </Form>
+    </S.Form>
   )
 }
 

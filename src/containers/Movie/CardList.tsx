@@ -1,30 +1,7 @@
 import { FC } from 'react'
-import styled from 'styled-components'
 import Card from '../../components/Card'
 import { MovieDetail } from './API'
-
-const Grid = styled.div`
-  margin-top: 16px;
-  margin-bottom: 16px;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 16px;
-  @media (max-width: 1000px) {
-    grid-template-columns: repeat(2, auto);
-  }
-  @media (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-`
-
-const Item = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
+import { S } from './style'
 
 interface CardListProps {
   movieList: MovieDetail[]
@@ -32,9 +9,9 @@ interface CardListProps {
 
 const CardList: FC<CardListProps> = ({ movieList }) => {
   return (
-    <Grid data-testid="card-list">
+    <S.Grid data-testid="card-list">
       {movieList.map((movie, i) => (
-        <Item key={i}>
+        <S.GridItem key={i}>
           <Card
             imgSrc={movie.Poster}
             title={movie.Title}
@@ -42,9 +19,9 @@ const CardList: FC<CardListProps> = ({ movieList }) => {
             baseURL={'https://www.imdb.com/title/'}
             id={movie.imdbID}
           />
-        </Item>
+        </S.GridItem>
       ))}
-    </Grid>
+    </S.Grid>
   )
 }
 
