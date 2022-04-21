@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { S } from './style'
 
 export interface CardWrapperProps {
@@ -7,7 +7,8 @@ export interface CardWrapperProps {
   children?: ReactNode
 }
 
-const CardWrapper: FC<CardWrapperProps> = ({ baseURL, id, children }) => {
+const CardWrapper = (props: CardWrapperProps) => {
+  const { baseURL, id, children } = props
   if (baseURL && id) {
     return (
       <S.LinkWrapper href={`${baseURL}${id}`} target="_blank" rel="noopener noreferrer">

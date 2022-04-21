@@ -1,4 +1,4 @@
-import { FC, FormEvent, memo, useState, MutableRefObject } from 'react'
+import { FormEvent, memo, useState, MutableRefObject } from 'react'
 import { fetchMovieList, MovieDetail } from './API'
 import AutoCompleteInput from './AutoCompleteInput'
 import LoadingGif from '../../assets/loading.gif'
@@ -9,7 +9,8 @@ interface SearchFormProps {
   lastSearchText: MutableRefObject<string>
 }
 
-const SearchForm: FC<SearchFormProps> = ({ updateMovieList, lastSearchText }) => {
+const SearchForm = (props: SearchFormProps) => {
+  const { updateMovieList, lastSearchText } = props
   const [isLoading, setIsLoading] = useState(false)
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

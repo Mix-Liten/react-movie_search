@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { useState } from 'react'
 import Loading from './Loading'
 import { S } from './style'
 
@@ -7,7 +7,8 @@ interface ButtonProps {
   onClick(): Promise<void>
 }
 
-const Card: FC<ButtonProps> = ({ title, onClick }) => {
+const Button = (props: ButtonProps) => {
+  const { title, onClick } = props
   const [isLoading, setIsLoading] = useState(false)
   const onClickAction = async () => {
     if (isLoading) return
@@ -23,4 +24,4 @@ const Card: FC<ButtonProps> = ({ title, onClick }) => {
   )
 }
 
-export default Card
+export default Button

@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import Card from '../../components/Card'
 import { MovieDetail } from './API'
 import { S } from './style'
@@ -7,7 +6,8 @@ interface CardListProps {
   movieList: MovieDetail[]
 }
 
-const CardList: FC<CardListProps> = ({ movieList }) => {
+const CardList= (props: CardListProps) => {
+  const { movieList } = props
   return (
     <S.Grid data-testid="card-list">
       {movieList.map((movie, i) => (

@@ -1,11 +1,11 @@
-import { FC } from 'react'
 import { S } from './style'
 
 interface HeaderProps {
   title: string
 }
 
-const Header: FC<HeaderProps> = ({ title }) => {
+const Header = (props: HeaderProps) => {
+  const { title } = props
   return (
     <header>
       <S.Title>{title}</S.Title>

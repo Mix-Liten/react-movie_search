@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, ChangeEvent, useState, memo, useRef } from 'react'
+import { KeyboardEvent, ChangeEvent, useState, memo, useRef } from 'react'
 import { fetchMovieList } from './API'
 import { useClickAway, useDebounce } from '../../hooks'
 import { ACS } from './style'
@@ -25,7 +25,8 @@ interface AutoCompleteProps {
   onSearch(searchText: string): Promise<void>
 }
 
-const AutoComplete: FC<AutoCompleteProps> = ({ name, placeholderText, onSearch }) => {
+const AutoComplete = (props: AutoCompleteProps) => {
+  const { name, placeholderText, onSearch } = props
   const [searchText, setSearchText] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [activeIndex, setActiveIndex] = useState(-1)
