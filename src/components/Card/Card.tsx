@@ -1,5 +1,6 @@
 import CardWrapper, { CardWrapperProps } from './CardWrapper'
 import { S } from './style'
+import { PLACEHOLDER_IMAGE_URL } from '../../constant'
 
 interface CardProps extends CardWrapperProps {
   imgSrc: string
@@ -13,12 +14,7 @@ const Card = (props: CardProps) => {
     <CardWrapper {...wrapperProps}>
       <S.Card>
         {!imgSrc || imgSrc === 'N/A' ? (
-          <img
-            src={`https://dummyimage.com/300x450/706c70/f5f5fa&text=${title}`}
-            alt={alt}
-            title={title}
-            loading="lazy"
-          />
+          <img src={`${PLACEHOLDER_IMAGE_URL}${title}`} alt={alt ?? title} title={title} loading="lazy" />
         ) : (
           <img src={imgSrc} alt={alt} title={title} loading="lazy" />
         )}

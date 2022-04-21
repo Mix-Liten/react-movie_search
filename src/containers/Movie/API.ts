@@ -1,4 +1,4 @@
-import { OMDB_API_URL } from '../../constant/API'
+import { OMDB_API_URL } from '../../constant'
 
 type Response = {
   Response: string
