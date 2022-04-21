@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Loading from './Loading'
 import { S } from './style'
+import { delay } from '../../helper'
 
 interface ButtonProps {
   title: string
@@ -14,8 +15,7 @@ const Button = (props: ButtonProps) => {
     if (isLoading) return
     setIsLoading(true)
     await onClick()
-    await new Promise<void>(resolve => setTimeout(() => resolve(), 500))
-    setIsLoading(false)
+    await delay(() => setIsLoading(false), 500)
   }
   return (
     <S.Button type="button" onClick={onClickAction}>

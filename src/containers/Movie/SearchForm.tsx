@@ -3,6 +3,7 @@ import { fetchMovieList, MovieDetail } from './API'
 import AutoCompleteInput from './AutoCompleteInput'
 import LoadingGif from '../../assets/loading.gif'
 import { S } from './style'
+import { delay } from '../../helper'
 
 interface SearchFormProps {
   updateMovieList(data: MovieDetail[], totalNum: number): void
@@ -31,8 +32,7 @@ const SearchForm = (props: SearchFormProps) => {
     lastSearchText.current = searchText
     const [movies, totalNum] = await fetchMovieList(searchText)
     if (movies?.length) updateMovieList(movies, parseInt(totalNum))
-    await new Promise<void>(resolve => setTimeout(() => resolve(), 1000))
-    setIsLoading(false)
+    await delay(() => setIsLoading(false), 1000)
   }
   return (
     <S.Form onSubmit={onSubmit}>
