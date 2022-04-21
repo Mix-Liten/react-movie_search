@@ -11,7 +11,7 @@ const CardWrapper = (props: CardWrapperProps) => {
   const { baseURL, id, children } = props
   if (baseURL && id) {
     return (
-      <S.LinkWrapper href={`${baseURL}${id}`} target="_blank" rel="noopener noreferrer">
+      <S.LinkWrapper href={`${baseURL}${id}`} target="_blank" rel="noopener noreferrer" data-testid="card-wrapper">
         {children}
       </S.LinkWrapper>
     )

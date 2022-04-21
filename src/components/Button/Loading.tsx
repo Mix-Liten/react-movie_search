@@ -2,7 +2,7 @@ import { S } from './style'
 
 const Loading = () => {
   return (
-    <S.Loading>
+    <S.Loading data-testid="button-loading-text">
       <S.LoadingItem delay={1}>L</S.LoadingItem>
       <S.LoadingItem delay={2}>o</S.LoadingItem>
       <S.LoadingItem delay={3}>a</S.LoadingItem>
