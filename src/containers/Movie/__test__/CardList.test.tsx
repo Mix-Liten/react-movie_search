@@ -1,25 +1,22 @@
-import React from 'react'
 import { render, screen, cleanup } from '@testing-library/react'
 import CardList from '../CardList'
 import { MovieDetail } from '../API'
+import mockData from '../../../__mockData__/data.json'
 
 beforeEach(cleanup)
 
-const mockData: MovieDetail[] = [
-  {
-    Title: 'Harry Potter and the Deathly Hallows: Part 2',
-    Year: '2011',
-    imdbID: 'tt1201607',
-    Type: 'movie',
-    Poster:
-      'https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg',
-  },
-]
+const movieList: MovieDetail[] = [mockData['Search'][0]]
 
-describe('<CardList />', () => {
-  it('render header', () => {
-    render(<CardList movieList={mockData} />)
-    const element = screen.getByTestId('card-list')
-    expect(element).toBeTruthy()
+describe('containers/Movie/CardList', () => {
+  it('should render card list', () => {
+    render(<CardList movieList={[]} />)
+    const listElement = screen.getByTestId('card-list')
+    expect(listElement).toBeInTheDocument()
+  })
+
+  it('should render correct length of movie list data', () => {
+    render(<CardList movieList={movieList} />)
+    const listElement = screen.getByTestId('card-list')
+    expect(listElement.childElementCount).toBe(1)
   })
 })
