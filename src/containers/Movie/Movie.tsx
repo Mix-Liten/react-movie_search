@@ -16,7 +16,6 @@ const Movie = () => {
     if (movieList.length / 10 >= 1) {
       setnextPageIndex(Math.ceil(movieList.length / 10 + 1))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieList])
 
   useEffect(() => {

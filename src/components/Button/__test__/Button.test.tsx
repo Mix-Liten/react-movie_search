@@ -3,7 +3,7 @@ import Button from '../Button'
 
 const props = {
   title: 'More',
-  onClick: async () => {},
+  onClick: jest.fn(),
 }
 
 describe('components/Button', () => {

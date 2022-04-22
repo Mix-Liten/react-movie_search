@@ -81,7 +81,7 @@ const AutoComplete = (props: AutoCompleteProps) => {
 
   useDebounce(
     async () => {
-      if (!searchText || searchText.length > 10 || searchText.length < 4) return
+      if (!searchText || searchText.length > 10 || searchText.length < 3) return
       const [movies] = await fetchMovieList(searchText.trim())
       if (!movies?.length) return
       const movieNameList = movies
