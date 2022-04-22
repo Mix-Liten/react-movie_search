@@ -119,7 +119,7 @@ const AutoComplete = (props: AutoCompleteProps) => {
         ref={inputRef}
       />
       {isShow && (
-        <ACS.List>
+        <ACS.List data-testid="suggestions">
           {suggestions.map((suggestion, i) =>
             activeIndex === i ? (
               <ACS.ActiveItem

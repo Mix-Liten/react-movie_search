@@ -1,9 +1,7 @@
-import { render, screen, cleanup } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import CardList from '../CardList'
 import { MovieDetail } from '../API'
 import mockData from '../../../__mockData__/data.json'
-
-beforeEach(cleanup)
 
 const movieList: MovieDetail[] = [mockData['Search'][0]]
 
